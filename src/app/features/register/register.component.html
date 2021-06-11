@@ -1,0 +1,125 @@
+<section class="main__signup">
+  <div class="signup">
+    <h4 class="signup__welcome">
+      <i>Welcome to </i>
+      <span
+        ><img src="./assets/images/logo.png" class="signup__logo" alt=""
+      /></span>
+    </h4>
+    <h5 class="signup__create">Create an Account</h5>
+    <div
+      class="alert alert-danger text-center"
+      *ngIf="errorMessage && errorMessage.length"
+    >
+      {{ errorMessage }}
+    </div>
+    <!-- =========== REGISTRATION FORM WITH THYMELEAF =========== -->
+    <form
+      class="signup__formContainer"
+      name="form"
+      th:action="@{/register}"
+      th:object="${registrant}"
+      (ngSubmit)="register()"
+    >
+      <div class="signup__fieldContainer">
+        <input
+          class="signup__textField form-control"
+          type="text"
+          placeholder="First Name"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="user.firstname"
+          th:field="*{firstName}"
+        />
+      </div>
+      <div class="signup__fieldContainer">
+        <input
+          class="signup__textField form-control"
+          type="text"
+          placeholder="Last Name"
+          id="lastName"
+          name="lastName"
+          th:field="*{lastName}"
+          [(ngModel)]="user.lastname"
+        />
+      </div>
+      <div class="signup__fieldContainer">
+        <input
+          class="signup__textField form-control"
+          type="text"
+          placeholder="Email Address"
+          id="email"
+          name="email"
+          th:field="*{email}"
+          [(ngModel)]="user.email"
+        />
+      </div>
+      <div class="signup__fieldContainer signup__password">
+        <input
+          class="signup__textField form-control"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password"
+          id="password1"
+          name="password1"
+          th:field="*{password}"
+          [(ngModel)]="user.password"
+        />
+        <span (click)="showPassword = !showPassword"
+          ><i
+            style="font-size: 1.7rem"
+            class="las la-eye"
+            onclick="show1()"
+            id="eye"
+          ></i
+        ></span>
+      </div>
+      <div class="signup__fieldContainer signup__password">
+        <input
+          class="signup__textField form-control"
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          placeholder="Confirm Password"
+          id="password2"
+          name="password2"
+          th:field="*{password}"
+          [(ngModel)]="user.confirmPassword"
+        />
+        <span (click)="showConfirmPassword = !showConfirmPassword"
+          ><i
+            style="font-size: 1.7rem"
+            class="las la-eye"
+            onclick="show2()"
+            id="eye"
+          ></i
+        ></span>
+      </div>
+      <div class="loginBox__checkbox" style="display: inline-block">
+        <input
+          style="cursor: pointer; border: 1px solid #ced4da"
+          type="checkbox"
+          id="policy"
+          name="policy"
+          disabled="true"
+        />
+        <label class="loginBox__checkbox--label" for="checkbox"
+          >I understand and agree to the</label
+        >
+        <button type="button" class="pdfbtn" (click)="openTermsModal()">
+          Terms of Use
+        </button>
+        <label class="loginBox__checkbox--label" for="checkbox">and</label>
+        <button type="button" class="pdfbtn" (click)="openPrivacyModal()">
+          Privacy Policy
+        </button>
+      </div>
+      <!-- <a style="text-align: center;" class="signup__btn" href="<?php //echo get_url('public', 'consent');  ?>">Sign Up</a> -->
+      <button
+        type="submit"
+        name="signup_vetzu"
+        id="signup_vetzu"
+        class="signup__btn"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</section>
