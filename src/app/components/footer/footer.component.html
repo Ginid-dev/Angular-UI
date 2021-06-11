@@ -1,0 +1,31 @@
+<div class="w-100">
+  <img
+    src="https://bgcheck.vetzu.com/assets/images/authorize_logo.png"
+    class="img-fluid"
+    style="position: fixed; bottom: 20px; right: 130px"
+    alt=""
+  />
+  <div class="card d-inline-block text-center">
+    <ngb-carousel
+      style="
+        width: 90px;
+        height: 72px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+      "
+      [showNavigationArrows]="false"
+      [showNavigationIndicators]="false"
+    >
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper">
+          <img
+            [src]="image"
+            alt="Random slide"
+            style="height: 72px; width: 90px"
+          />
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</div>
